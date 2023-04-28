@@ -2,8 +2,25 @@ package Employee;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Objects;
 
 public class Employee {
+	@Override
+	public int hashCode() {
+		return Objects.hash(dateOfBirth, empId, firstName, lastName);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Employee))
+			return false;
+		Employee other = (Employee) obj;
+		return Objects.equals(dateOfBirth, other.dateOfBirth) && Objects.equals(empId, other.empId)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName);
+	}
+
 	private static Integer employeesAmount = 0;
 	private final Integer empId;
 	private /*final*/ LocalDate dateOfBirth /*= LocalDate.of(2023, Month.APRIL, 25)*/;
